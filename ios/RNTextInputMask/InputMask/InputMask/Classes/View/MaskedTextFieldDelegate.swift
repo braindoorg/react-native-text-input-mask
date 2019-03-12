@@ -83,7 +83,7 @@ open class MaskedTextFieldDelegate: NSObject, UITextFieldDelegate {
     public init(format: String) {
         self._maskFormat = format
         self.mask = try! Mask.getOrCreate(withFormat: format)
-        self._autocomplete = false
+        self._autocomplete = true
         self._autocompleteOnFocus = false
         super.init()
     }
@@ -202,7 +202,7 @@ open class MaskedTextFieldDelegate: NSObject, UITextFieldDelegate {
                 string: text,
                 caretPosition: text.index(text.startIndex, offsetBy: range.location)
             ),
-            autocomplete: true
+            autocomplete: false
         )
         
         field.text = result.formattedText.string
