@@ -48,7 +48,6 @@ export default class TextInputMask extends Component {
 
   render() {
     return (<TextInput
-      {...this.props}
       value={undefined}
       ref={ref => {
         this.input = ref
@@ -66,6 +65,7 @@ export default class TextInputMask extends Component {
           this.props.onChangeText && this.props.onChangeText(masked)
         }
       }}
+      {...this.props}
     />);
   }
 }
