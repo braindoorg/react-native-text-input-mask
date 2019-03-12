@@ -202,7 +202,7 @@ open class MaskedTextFieldDelegate: NSObject, UITextFieldDelegate {
                 string: text,
                 caretPosition: text.index(text.startIndex, offsetBy: range.location)
             ),
-            autocomplete: false
+            autocomplete: true
         )
         
         field.text = result.formattedText.string
