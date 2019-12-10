@@ -1,6 +1,5 @@
 package com.RNTextInputMask;
 
-import android.app.Activity;
 import android.widget.EditText;
 import android.text.TextWatcher;
 import com.facebook.react.uimanager.UIManagerModule;
@@ -9,17 +8,17 @@ import com.facebook.react.uimanager.NativeViewHierarchyManager;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.Callback;
-
 import com.redmadrobot.inputmask.MaskedTextChangedListener;
-import com.redmadrobot.inputmask.PolyMaskTextChangedListener;
-
 import com.redmadrobot.inputmask.model.CaretString;
 import com.redmadrobot.inputmask.helper.Mask;
-import android.support.annotation.NonNull;
 
 public class RNTextInputMaskModule extends ReactContextBaseJavaModule {
+
+    private static final int TEXT_CHANGE_LISTENER_TAG_KEY = 123456789;
+
+
+
     ReactApplicationContext reactContext;
 
     public RNTextInputMaskModule(ReactApplicationContext reactContext) {
@@ -88,11 +87,11 @@ public class RNTextInputMaskModule extends ReactContextBaseJavaModule {
                                 null
                         );
 
-                        if (editText.getTag() != null) {
-                            editText.removeTextChangedListener((TextWatcher) editText.getTag());
+                        if (editText.getTag(TEXT_CHANGE_LISTENER_TAG_KEY) != null) {
+                            editText.removeTextChangedListener((TextWatcher) editText.getTag(TEXT_CHANGE_LISTENER_TAG_KEY));
                         }
 
-                        editText.setTag(listener);
+                        editText.setTag(TEXT_CHANGE_LISTENER_TAG_KEY, listener);
                         editText.addTextChangedListener(listener);
                     }
                 });
